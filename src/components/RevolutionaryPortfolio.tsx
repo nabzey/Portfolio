@@ -520,7 +520,7 @@ const RevolutionaryPortfolio = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-blue-400" />
-                  <span>zeynabba45@gmail.com</span>
+                  <span>45@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-6 h-6 text-green-400" />
@@ -608,9 +608,6 @@ const RevolutionaryPortfolio = () => {
             </div>
             <p className="text-gray-400 mb-6">
               Développeuse FULL STACK • DevOps • UI/UX Designer
-            </p>
-            <p className="text-sm text-gray-500">
-              © 2024 BA Zeynab. Tous droits réservés.
             </p>
           </motion.div>
         </div>

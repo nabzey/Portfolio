@@ -132,8 +132,6 @@ const translations = {
     subject: 'Sujet',
     message: 'Message',
 
-    // Footer
-    copyright: '© 2024 BA Zeynab. Tous droits réservés.',
   },
 };
 
