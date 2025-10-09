@@ -69,13 +69,13 @@ const Contact = () => {
               </h3>
               <div className="flex space-x-4">
                 <a
-                  href="https://github.com/zeynab"
+                  href="https://github.com/nabzey"
                   className="p-2 bg-white/10 rounded-full hover:bg-cyan-500/20 transition-colors"
                 >
                   <Github className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://linkedin.com/in/zeynab"
+                  href="https://linkedin.com/in/zeynab-ba-4342a021a"
                   className="p-2 bg-white/10 rounded-full hover:bg-cyan-500/20 transition-colors"
                 >
                   <Linkedin className="w-5 h-5" />

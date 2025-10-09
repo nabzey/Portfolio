@@ -70,8 +70,8 @@ export const useZeynabData = (): ZeynabData => {
     contact: {
       email: "zeynab@example.com",
       phone: "+221 12 345 67 89",
-      linkedin: "linkedin.com/in/zeynab-ba",
-      github: "github.com/zeynab"
+      linkedin: "linkedin.com/in/zeynab-ba-4342a021a",
+      github: "github.com/nabzey"
     },
     skills: {
       technical: [

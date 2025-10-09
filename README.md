@@ -226,8 +226,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **BA Zeynab**
 - Email: zeynab@example.com
 - Phone/WhatsApp: +221 12 345 67 89
-- LinkedIn: [linkedin.com/in/zeynab-ba](https://linkedin.com/in/zeynab-ba)
-- GitHub: [github.com/zeynab](https://github.com/zeynab)
+- LinkedIn: [linkedin.com/in/zeynab-ba-4342a021a](https://linkedin.com/in/zeynab-ba-4342a021a)
+- GitHub: [github.com/nabzey](https://github.com/nabzey)
 
 ---
 

@@ -21,7 +21,7 @@ const Footer = () => {
               <Mail className="w-5 h-5" />
             </a>
             <a
-              href="https://github.com/zeynab"
+              href="https://github.com/nabzey"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-cyan-300 transition-colors"
@@ -29,7 +29,7 @@ const Footer = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com/in/zeynab"
+              href="https://linkedin.com/in/zeynab-ba-4342a021a"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-cyan-300 transition-colors"
