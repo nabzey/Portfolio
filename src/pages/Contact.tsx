@@ -40,21 +40,21 @@ const Contact = () => {
               </h2>
               <div className="space-y-4">
                 <a
-                  href="mailto:zeynab@example.com"
+                  href="mailto:zeynabba45@gmail.com"
                   className="flex items-center space-x-3 text-cyan-100 hover:text-cyan-300 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
-                  <span>zeynab@example.com</span>
+                  <span>zeynabba45@gmail.com</span>
                 </a>
                 <a
-                  href="tel:+221123456789"
+                  href="tel:+221773657435"
                   className="flex items-center space-x-3 text-cyan-100 hover:text-cyan-300 transition-colors"
                 >
                   <Phone className="w-5 h-5" />
-                  <span>+221 12 345 67 89</span>
+                  <span>+221 77 365 74 35</span>
                 </a>
                 <a
-                  href="https://wa.me/221123456789"
+                  href="https://wa.me/221773657435"
                   className="flex items-center space-x-3 text-cyan-100 hover:text-cyan-300 transition-colors"
                 >
                   <MessageCircle className="w-5 h-5" />

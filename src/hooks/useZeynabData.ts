@@ -68,8 +68,8 @@ export const useZeynabData = (): ZeynabData => {
       fr: "Développeuse FULL STACK • Designer UI/UX"
     },
     contact: {
-      email: "zeynab@example.com",
-      phone: "+221 12 345 67 89",
+      email: "zeynabba45@gmail.com",
+      phone: "+221 77 365 74 35",
       linkedin: "linkedin.com/in/zeynab-ba-4342a021a",
       github: "github.com/nabzey"
     },

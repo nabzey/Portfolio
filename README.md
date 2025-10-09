@@ -193,7 +193,7 @@ Create a `.env` file for any API keys or configuration:
 
 ```env
 VITE_API_URL=https://api.example.com
-VITE_CONTACT_EMAIL=zeynab@example.com
+VITE_CONTACT_EMAIL=zeynabba45@gmail.com
 ```
 
 ### Performance Optimization
@@ -224,8 +224,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 **BA Zeynab**
-- Email: zeynab@example.com
-- Phone/WhatsApp: +221 12 345 67 89
+- Email: zeynabba45@gmail.com
+- Phone/WhatsApp: +221 77 365 74 35
 - LinkedIn: [linkedin.com/in/zeynab-ba-4342a021a](https://linkedin.com/in/zeynab-ba-4342a021a)
 - GitHub: [github.com/nabzey](https://github.com/nabzey)
 

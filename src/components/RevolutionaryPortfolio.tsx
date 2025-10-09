@@ -520,7 +520,7 @@ const RevolutionaryPortfolio = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <Mail className="w-6 h-6 text-blue-400" />
-                  <span>zeynab@example.com</span>
+                  <span>zeynabba45@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="w-6 h-6 text-green-400" />
