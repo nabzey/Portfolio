@@ -46,11 +46,14 @@ const Chatbot = () => {
     education: "Formation intensive à la Sonatel Academy, BTS Informatique Industrielle et Réseaux",
     skills: ["React", "TypeScript", "Node.js", "Python", "DevOps", "UI/UX Design", "Docker", "AWS"],
     projects: [
-      "Application Todo List (TypeScript/Node.js)",
-      "Système de Gestion de Cargaison GP",
-      "Plateforme de Gestion des Apprenants",
-      "Application Bancaire MaxITSA",
-      "Application de Gestion des Salaires"
+      "WestaMarket (Mobile Marketplace)",
+      "LUXURY (Plateforme web premium UI/UX)",
+      "FotoJay (API Plateforme de photographie)",
+      "GestionnaireBanque (Application PHP native)",
+      "VOYAGE-221 (API Agence de voyage)",
+      "Gestion Approvisionnement (API Node.js/Express)",
+      "HERGO (Plateforme de recherche d'hébergement)",
+      "Secouriss (Application Premiers Secours)"
     ],
     pricing: {
       website: "Site web : 100 000 FRCS (négociable - contactez Zeynab directement)",
@@ -468,34 +471,52 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Todo List App",
-                description: "Application de gestion de tâches avec authentification",
-                tech: ["TypeScript", "Node.js", "React"],
+                title: "WestaMarket",
+                description: "Application mobile marketplace (Android + iOS)",
+                tech: ["React Native", "TypeScript", "Redux"],
                 color: "from-blue-500 to-cyan-500"
               },
               {
-                title: "GP Cargo",
-                description: "Système de gestion de cargaison multimodal",
-                tech: ["Node.js", "React", "MySQL"],
+                title: "LUXURY",
+                description: "Plateforme web premium UI/UX",
+                tech: ["TypeScript", "React", "TailwindCSS"],
+                color: "from-indigo-500 to-purple-500"
+              },
+              {
+                title: "FotoJay",
+                description: "API de gestion pour plateforme de photographie",
+                tech: ["TypeScript", "Node.js", "Express"],
+                color: "from-yellow-500 to-orange-400"
+              },
+              {
+                title: "GestionnaireBanque",
+                description: "Application de gestion bancaire (PHP natif)",
+                tech: ["PHP", "MySQL", "HTML/CSS"],
+                color: "from-blue-600 to-blue-400"
+              },
+              {
+                title: "VOYAGE-221",
+                description: "API de gestion pour agence de voyage",
+                tech: ["Python", "FastAPI", "SQLAlchemy"],
                 color: "from-green-500 to-teal-500"
               },
               {
-                title: "Gestion Apprenants",
-                description: "Plateforme éducative avec scan QR code",
-                tech: ["PHP", "JavaScript", "MySQL"],
+                title: "Gestion Approvisionnement",
+                description: "API RESTful de gestion de stocks",
+                tech: ["Node.js", "Express", "PostgreSQL"],
                 color: "from-purple-500 to-pink-500"
               },
               {
-                title: "MaxITSA Banking",
-                description: "Application bancaire avec API REST",
-                tech: ["PHP", "API REST", "PostgreSQL"],
+                title: "HERGO",
+                description: "Plateforme de recherche d'hébergement",
+                tech: ["TypeScript", "React", "Node.js"],
                 color: "from-orange-500 to-red-500"
               },
               {
-                title: "Gestion Salaires",
-                description: "Application multi-entreprises de paie",
-                tech: ["Node.js", "React", "MySQL"],
-                color: "from-indigo-500 to-purple-500"
+                title: "Secouriss",
+                description: "Application d'aide aux premiers secours",
+                tech: ["TypeScript", "React", "Vite"],
+                color: "from-rose-500 to-red-400"
               }
             ].map((project, index) => (
               <motion.div

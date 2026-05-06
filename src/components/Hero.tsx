@@ -257,10 +257,10 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 Me contacter
-              </motion.a>
+              </motion.a> 
               <motion.a
-                href="/cv-zeynab.pdf"
-                download="CV_Zeynab_BA.pdf"
+                href="/zeynabcv.CV.pdf"
+                download="zeynabcv.CV.pdf"
                 className="border-2 border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-lg font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 text-center shadow-lg hover:shadow-xl"
                 whileHover={{
                   scale: 1.05,

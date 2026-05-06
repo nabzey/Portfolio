@@ -37,7 +37,6 @@ const CompetencesExperience = () => {
       color: "from-purple-500 to-pink-500",
       skills: [
         { name: "Docker", level: 80 },
-        { name: "AWS", level: 75 },
         { name: "CI/CD", level: 70 },
         { name: "Kubernetes", level: 65 },
         { name: "Git", level: 90 },

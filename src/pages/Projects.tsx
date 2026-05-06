@@ -22,34 +22,63 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "Application Todo List",
-      description: "Application de gestion de tâches en TypeScript et Node.js avec authentification, CRUD, photos et enregistrements vocaux.",
-      tech: ["TypeScript", "Node.js", "React"],
-      media: { type: "carousel", data: todoImages }
+      title: "WestaMarket",
+      description: "Application mobile marketplace (Android + iOS) qui permet de vendre et acheter des produits modernes d'Afrique de l'Ouest de façon simple, rapide et sécurisée.",
+      tech: ["React Native", "TypeScript", "Redux"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=WestaMarket" },
+      github: "https://github.com/nabzey/WestaMarket"
     },
     {
-      title: "Système de Gestion de Cargaison (GP)",
-      description: "Plateforme de transport multimodal avec suivi de colis, critères d'expédition et gestion des cargaisons.",
-      tech: ["Node.js", "React", "MySQL"],
-      media: { type: "video", data: "/gp/demo.webm" }
+      title: "LUXURY",
+      description: "Plateforme web avec une interface haut de gamme dédiée à la présentation de biens/services premium. Design UI/UX et optimisation des performances.",
+      tech: ["TypeScript", "React", "TailwindCSS"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=LUXURY" },
+      github: "https://github.com/nabzey/LUXURY",
+      link: "https://luxurym2.vercel.app/"
     },
     {
-      title: "Plateforme de Gestion des Apprenants",
-      description: "Système de gestion éducative avec promotions, présence, cours et scan QR code pour les apprenants.",
-      tech: ["PHP", "JSON"],
-      media: { type: "carousel", data: gestionImages }
+      title: "FotoJay",
+      description: "API de gestion pour une plateforme de photographie. Gestion des utilisateurs, des réservations et des galeries.",
+      tech: ["TypeScript", "Node.js", "Express"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=FotoJay" },
+      github: "https://github.com/nabzey/FO_TOL_DIAY",
+      link: "https://back-photolediaye.onrender.com/api-docs"
     },
     {
-      title: "Application Bancaire MaxITSA",
-      description: "Application de services financiers pour la gestion de comptes bancaires, transferts, paiements et intégrations avec des systèmes externes comme AppDAFF (vérification d'identité) et AppWoyofal (achats d'électricité). Développée en PHP orienté objet avec architecture MVC, API REST, et déploiement cloud.",
-      tech: ["PHP", "API REST", "PostgreSQL"],
-      media: { type: "image", data: maxitImage }
+      title: "GestionnaireBanque",
+      description: "Application de gestion bancaire développée en PHP natif pour la gestion des comptes, des clients et des transactions financières.",
+      tech: ["PHP", "MySQL", "HTML/CSS"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=Banque+PHP" },
+      github: "https://github.com/nabzey/GestionnaireBanque"
     },
     {
-      title: "Application de Gestion des Salaires",
-      description: "Application web multi-entreprises pour la gestion complète des salaires et paiements.",
-      tech: ["Node.js", "React", "MySQL"],
-      media: { type: "video", data: "/salire/demo.webm" }
+      title: "VOYAGE-221",
+      description: "API de gestion pour l'agence de voyage VOYAGE 221. Gère les destinations, les circuits, les clients et les réservations de voyages.",
+      tech: ["Python", "FastAPI", "SQLAlchemy"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=VOYAGE-221" },
+      github: "https://github.com/nabzey/VOYAGE-221"
+    },
+    {
+      title: "Gestion Approvisionnement",
+      description: "API RESTful avec Node.js et Express pour gérer les approvisionnements d'une boutique (Fournisseurs, Produits, Approvisionnements).",
+      tech: ["Node.js", "Express", "PostgreSQL"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=Gestion+Appro" },
+      github: "https://github.com/nabzey/Gestion_Approvisionnement"
+    },
+    {
+      title: "HERGO",
+      description: "Plateforme intelligente permettant à un utilisateur de trouver rapidement un hôtel ou une villa pour s'abriter en toute sécurité.",
+      tech: ["TypeScript", "React", "Node.js"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=HERGO" },
+      github: "https://github.com/nabzey/HERGO"
+    },
+    {
+      title: "Secouriss",
+      description: "Application outil d'aide aux premiers secours.",
+      tech: ["TypeScript", "React", "Vite"],
+      media: { type: "image", data: "https://via.placeholder.com/600x400?text=Secouriss" },
+      github: "https://github.com/nabzey/secouriss",
+      link: "https://secouriss.vercel.app"
     }
   ];
 
@@ -90,7 +119,7 @@ const Projects = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex-1 flex items-center justify-center mt-auto">
+                <div className="flex-1 flex items-center justify-center mt-auto mb-4">
                   {project.media.type === "carousel" && Array.isArray(project.media.data) ? (
                     <Carousel className="w-full max-w-sm">
                       <CarouselContent>
@@ -124,6 +153,23 @@ const Projects = () => {
                       className="w-full h-auto rounded-xl shadow-lg max-h-48 object-contain"
                     />
                   ) : null}
+                </div>
+                
+                <div className="flex gap-4 mt-auto">
+                  {project.github && (
+                    <Button variant="outline" size="sm" asChild className="w-full bg-white/10 hover:bg-white/20 border-white/20 text-white">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        Code GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {project.link && (
+                    <Button variant="default" size="sm" asChild className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer">
+                        Voir le site
+                      </a>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

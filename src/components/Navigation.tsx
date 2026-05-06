@@ -63,7 +63,7 @@ const Navigation = () => {
             </button>
 
             <a
-              href="/cv-zeynab-final.pdf"
+              href="/zeynabcv.CV.pdf"
               download
               className="flex items-center space-x-2 px-4 py-2 bg-cyan-500 text-white rounded-full hover:bg-cyan-600 transition-colors"
             >
@@ -117,7 +117,7 @@ const Navigation = () => {
               </button>
 
               <a
-                href="/cv-zeynab-final.pdf"
+                href="/zeynabcv.CV.pdf"
                 download
                 onClick={() => setIsOpen(false)}
                 className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-md transition-colors"

@@ -1,0 +1,162 @@
+[
+  {
+    "name": "WestaMarket",
+    "description": "une application mobile marketplace (Android + iOS) qui permet de vendre et acheter des produits modernes d’Afrique de l’Ouest, de façon simple, rapide et sécurisée.",
+    "url": "https://github.com/nabzey/WestaMarket",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "FASTAPI",
+    "description": "FASTAPI  pour gérer les approvisionnements d'une boutique. L'application doit gérer trois entités principales : Fournisseur, Produit et Approvisionnement.",
+    "url": "https://github.com/nabzey/FASTAPI",
+    "homepage": null,
+    "topics": [],
+    "language": "Python"
+  },
+  {
+    "name": "Gestion_Approvisionnement",
+    "description": " une API RESTful avec Node.js et Express pour gérer les approvisionnements d'une boutique. L'application doit gérer trois entités principales : Fournisseur, Produit et Approvisionnement.",
+    "url": "https://github.com/nabzey/Gestion_Approvisionnement",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "VOYAGE-221",
+    "description": "L'agence de voyage VOYAGE 221  gére ses destinations, ses circuits, ses clients et les réservations de voyages",
+    "url": "https://github.com/nabzey/VOYAGE-221",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "HERGO",
+    "description": "hergo est une plateforme intelligente permettant à un utilisateur, même dans une ville qu’il ne connaît pas, de trouver rapidement un hôtel ou une villa afin de s’abriter en toute sécurité",
+    "url": "https://github.com/nabzey/HERGO",
+    "homepage": null,
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "gestion_produits",
+    "description": null,
+    "url": "https://github.com/nabzey/gestion_produits",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "LUXURY",
+    "description": "Développement d’une plateforme web avec une interface haut de gamme dédiée à la présentation de biens/services premium. Le projet met en avant le design UI/UX, la responsivité et l’optimisation des performances pour une navigation fluide",
+    "url": "https://github.com/nabzey/LUXURY",
+    "homepage": null,
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "ompay_mobile",
+    "description": null,
+    "url": "https://github.com/nabzey/ompay_mobile",
+    "homepage": "https://ompay-mobile.vercel.app",
+    "topics": [],
+    "language": "Dart"
+  },
+  {
+    "name": "secouriss",
+    "description": "Cette application est un outil d'aide aux premiers secours",
+    "url": "https://github.com/nabzey/secouriss",
+    "homepage": "https://secouriss.vercel.app",
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "OM-PAY",
+    "description": null,
+    "url": "https://github.com/nabzey/OM-PAY",
+    "homepage": null,
+    "topics": [],
+    "language": "PHP"
+  },
+  {
+    "name": "GestionnaireBanque",
+    "description": null,
+    "url": "https://github.com/nabzey/GestionnaireBanque",
+    "homepage": null,
+    "topics": [],
+    "language": "PHP"
+  },
+  {
+    "name": "APIREST",
+    "description": null,
+    "url": "https://github.com/nabzey/APIREST",
+    "homepage": null,
+    "topics": [],
+    "language": "PHP"
+  },
+  {
+    "name": "FO_TOL_DIAY",
+    "description": null,
+    "url": "https://github.com/nabzey/FO_TOL_DIAY",
+    "homepage": null,
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "Portfolio",
+    "description": null,
+    "url": "https://github.com/nabzey/Portfolio",
+    "homepage": "https://portfolio-dun-theta-0egu7joel5.vercel.app",
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "my-app-ges-entreprise",
+    "description": null,
+    "url": "https://github.com/nabzey/my-app-ges-entreprise",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "Gestion_salaries",
+    "description": "partie front",
+    "url": "https://github.com/nabzey/Gestion_salaries",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "Gestion-salaries",
+    "description": "Application web de gestion des salaires multi-entreprises permettant de gérer employés, cycles de paie, bulletins, paiements et reçus PDF avec dashboard et rôles utilisateurs.",
+    "url": "https://github.com/nabzey/Gestion-salaries",
+    "homepage": null,
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "AppComplet",
+    "description": "Une appli back et front react & nodejs",
+    "url": "https://github.com/nabzey/AppComplet",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  },
+  {
+    "name": "todo-liste",
+    "description": null,
+    "url": "https://github.com/nabzey/todo-liste",
+    "homepage": null,
+    "topics": [],
+    "language": "TypeScript"
+  },
+  {
+    "name": "todoliste-front",
+    "description": "Un todo-list front-end qui est fetch avec le back-end",
+    "url": "https://github.com/nabzey/todoliste-front",
+    "homepage": null,
+    "topics": [],
+    "language": "JavaScript"
+  }
+]

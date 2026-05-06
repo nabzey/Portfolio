@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useZeynabData } from '@/hooks/useZeynabData';
 
@@ -8,7 +8,7 @@ interface Message {
   id: string;
   text: string;
   isBot: boolean;
-  timestamp: Date;
+  options?: string[];
 }
 
 const Chatbot: React.FC = () => {
@@ -17,7 +17,7 @@ const Chatbot: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   const zeynabData = useZeynabData();
 
   const scrollToBottom = () => {
@@ -30,247 +30,173 @@ const Chatbot: React.FC = () => {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Initial greeting using dynamic data
       const greeting = language === 'en'
-        ? `Hello! I'm ${zeynabData.name}'s assistant. I'm here to help you learn about her services as a ${zeynabData.title.en.toLowerCase()} and get pricing information. How can I assist you today?`
-        : `Bonjour ! Je suis l'assistant de ${zeynabData.name}. Je suis là pour vous aider à en savoir plus sur ses services en tant que ${zeynabData.title.fr.toLowerCase()} et obtenir des informations de prix. Comment puis-je vous aider aujourd'hui ?`;
+        ? `Hello! I'm ${zeynabData.name}'s assistant. How can I help you today?`
+        : `Bonjour ! Je suis l'assistant de ${zeynabData.name}. Comment puis-je vous aider aujourd'hui ?`;
+      
+      const options = language === 'en' 
+        ? ['Skills', 'Projects', 'Pricing', 'Contact']
+        : ['Compétences', 'Projets', 'Tarifs', 'Contact'];
 
       setTimeout(() => {
-        addMessage(greeting, true);
+        addMessage(greeting, true, options);
       }, 500);
     }
   }, [isOpen, language, zeynabData]);
 
-  const addMessage = (text: string, isBot: boolean) => {
+  const addMessage = (text: string, isBot: boolean, options?: string[]) => {
     const newMessage: Message = {
-      id: Date.now().toString(),
+      id: Date.now().toString() + Math.random().toString(),
       text,
       isBot,
-      timestamp: new Date(),
+      options,
     };
     setMessages(prev => [...prev, newMessage]);
   };
 
-  const handleSendMessage = async () => {
-    if (!inputValue.trim()) return;
+  const handleSendMessage = (text: string = inputValue) => {
+    if (!text.trim()) return;
 
-    const userMessage = inputValue.trim();
     setInputValue('');
-    addMessage(userMessage, false);
-
+    addMessage(text.trim(), false);
     setIsTyping(true);
 
-    // Simulate bot response
     setTimeout(() => {
-      const response = generateResponse(userMessage.toLowerCase());
-      addMessage(response, true);
+      handleBotResponse(text.trim().toLowerCase());
       setIsTyping(false);
-    }, 1000 + Math.random() * 2000);
+    }, 800);
   };
 
-  const generateResponse = (message: string): string => {
-    const lowerMessage = message.toLowerCase();
-
-    // Compétences techniques
-    if (lowerMessage.includes('compétence') || lowerMessage.includes('skill') || lowerMessage.includes('techno') || lowerMessage.includes('savoir')) {
-      const technicalSkills = zeynabData.skills.technical.join(', ');
-      const behavioralSkills = zeynabData.skills.behavioral.join(', ');
-      const tools = zeynabData.skills.tools.join(', ');
-
-      return language === 'en'
-        ? `${zeynabData.name} has strong technical skills including:\n\n• Programming: ${technicalSkills}\n• Soft Skills: ${behavioralSkills}\n• Tools & Technologies: ${tools}\n\nShe specializes in ${zeynabData.title.en.toLowerCase()}.`
-        : `${zeynabData.name} possède de solides compétences techniques incluant :\n\n• Programmation : ${technicalSkills}\n• Compétences comportementales : ${behavioralSkills}\n• Outils & Technologies : ${tools}\n\nElle se spécialise en ${zeynabData.title.fr.toLowerCase()}.`;
+  const handleBotResponse = (message: string) => {
+    const isEn = language === 'en';
+    
+    if (message.includes('compétence') || message.includes('skill')) {
+      const resp = isEn 
+        ? `${zeynabData.name} is a Full Stack & Mobile Developer. She masters Flutter, React Native, React, Node.js, and more!`
+        : `${zeynabData.name} est Développeuse Full Stack & Mobile. Elle maîtrise Flutter, React Native, React, Node.js et bien d'autres !`;
+      addMessage(resp, true, isEn ? ['Projects', 'Contact'] : ['Projets', 'Contact']);
+      return;
     }
 
-    // Expérience professionnelle
-    if (lowerMessage.includes('expérience') || lowerMessage.includes('experience') || lowerMessage.includes('travail') || lowerMessage.includes('job')) {
-      const experiences = zeynabData.experience.map(exp =>
-        `• ${exp.title} at ${exp.company} (${exp.period})`
-      ).join('\n');
-
-      return language === 'en'
-        ? `${zeynabData.name} has professional experience as:\n\n${experiences}\n\nShe combines development skills with customer service experience.`
-        : `${zeynabData.name} a une expérience professionnelle en tant que :\n\n${experiences}\n\nElle combine des compétences en développement avec une expérience en service client.`;
+    if (message.includes('projet') || message.includes('project')) {
+      const resp = isEn 
+        ? `She recently built WestaMarket (Mobile App), LUXURY, and VOYAGE-221 API. Check the Projects page!`
+        : `Elle a récemment développé WestaMarket (App Mobile), LUXURY, et l'API VOYAGE-221. Allez voir la page Projets !`;
+      addMessage(resp, true, isEn ? ['Pricing', 'Contact'] : ['Tarifs', 'Contact']);
+      return;
     }
 
-    // Formation
-    if (lowerMessage.includes('formation') || lowerMessage.includes('education') || lowerMessage.includes('diplôme') || lowerMessage.includes('études')) {
-      const education = zeynabData.education.map(edu =>
-        `• ${edu.degree} at ${edu.school} (${edu.period})`
-      ).join('\n');
-
-      const certifications = zeynabData.certifications.map(cert =>
-        cert.title
-      ).join(', ');
-
-      return language === 'en'
-        ? `${zeynabData.name}'s education includes:\n\n${education}\n\nShe has certifications in ${certifications}.`
-        : `La formation de ${zeynabData.name} inclut :\n\n${education}\n\nElle possède des certifications ${certifications}.`;
+    if (message.includes('prix') || message.includes('tarif') || message.includes('pricing')) {
+      const resp = isEn 
+        ? `Pricing:\n• Website: ${zeynabData.services.website.price}\n• Web App: ${zeynabData.services.webapp.price}\n• UI/UX: ${zeynabData.services.design.price}`
+        : `Tarifs indicatifs :\n• Site Vitrine : ${zeynabData.services.website.price}\n• Application Web/Mobile : ${zeynabData.services.webapp.price}\n• UI/UX Design : ${zeynabData.services.design.price}`;
+      addMessage(resp, true, isEn ? ['Contact'] : ['Contacter Zeynab']);
+      return;
     }
 
-    // Projets
-    if (lowerMessage.includes('projet') || lowerMessage.includes('project') || lowerMessage.includes('réalisation') || lowerMessage.includes('work')) {
-      const projects = zeynabData.projects.map(project =>
-        `• ${project.title} (${project.tech.join(', ')})`
-      ).join('\n');
-
-      return language === 'en'
-        ? `${zeynabData.name} has worked on several projects:\n\n${projects}\n\nAll projects showcase her FULL STACK development skills.`
-        : `${zeynabData.name} a travaillé sur plusieurs projets :\n\n${projects}\n\nTous les projets mettent en valeur ses compétences en développement FULL STACK.`;
+    if (message.includes('contact')) {
+      const resp = isEn 
+        ? `You can reach her via email at ${zeynabData.contact.email} or on LinkedIn!`
+        : `Vous pouvez la joindre par email à ${zeynabData.contact.email} ou sur LinkedIn !`;
+      addMessage(resp, true);
+      return;
     }
 
-    // Services et tarifs
-    if (lowerMessage.includes('service') || lowerMessage.includes('prix') || lowerMessage.includes('tarif') || lowerMessage.includes('coût') || lowerMessage.includes('price') || lowerMessage.includes('cost')) {
-      return language === 'en'
-        ? `${zeynabData.name} offers professional services:\n\n• Website Development: ${zeynabData.services.website.price}\n• Web Application Development: ${zeynabData.services.webapp.price}\n• UI/UX Design: ${zeynabData.services.design.price}\n\nAll prices are in FCFA. Contact her for detailed quotes.`
-        : `${zeynabData.name} propose des services professionnels :\n\n• Développement de site web : ${zeynabData.services.website.price}\n• Développement d'application web : ${zeynabData.services.webapp.price}\n• Design UI/UX : ${zeynabData.services.design.price}\n\nTous les prix sont en FCFA. Contactez-la pour des devis détaillés.`;
-    }
-
-    // Contact
-    if (lowerMessage.includes('contact') || lowerMessage.includes('email') || lowerMessage.includes('téléphone') || lowerMessage.includes('phone') || lowerMessage.includes('contacter')) {
-      return language === 'en'
-        ? `You can contact ${zeynabData.name} through:\n• Email: ${zeynabData.contact.email}\n• Phone/WhatsApp: ${zeynabData.contact.phone}\n• LinkedIn: ${zeynabData.contact.linkedin}\n• GitHub: ${zeynabData.contact.github}\n\nUse the contact form on this website for project inquiries!`
-        : `Vous pouvez contacter ${zeynabData.name} via :\n• Email : ${zeynabData.contact.email}\n• Téléphone/WhatsApp : ${zeynabData.contact.phone}\n• LinkedIn : ${zeynabData.contact.linkedin}\n• GitHub : ${zeynabData.contact.github}\n\nUtilisez le formulaire de contact sur ce site pour vos demandes de projet !`;
-    }
-
-    // À propos/Personnalité
-    if (lowerMessage.includes('qui') || lowerMessage.includes('who') || lowerMessage.includes('about') || lowerMessage.includes('personne') || lowerMessage.includes('profil')) {
-      return language === 'en'
-        ? zeynabData.about.en
-        : zeynabData.about.fr;
-    }
-
-    // Certifications spécifiques
-    if (lowerMessage.includes('certification') || lowerMessage.includes('certificat')) {
-      const certifications = zeynabData.certifications.map(cert =>
-        `• ${cert.title} - ${cert.issuer} (${cert.date})`
-      ).join('\n');
-
-      return language === 'en'
-        ? `${zeynabData.name} has the following certifications:\n\n${certifications}`
-        : `${zeynabData.name} possède les certifications suivantes :\n\n${certifications}`;
-    }
-
-    // Négociation
-    if (lowerMessage.includes('négocier') || lowerMessage.includes('réduire') || lowerMessage.includes('discount') || lowerMessage.includes('negotiate')) {
-      return language === 'en'
-        ? `For pricing discussions or negotiations, please contact ${zeynabData.name} directly through the contact form or email. She'll be happy to discuss your specific project needs and find the best solution for you.`
-        : `Pour les discussions de prix ou négociations, veuillez contacter ${zeynabData.name} directement via le formulaire de contact ou l'email. Elle sera heureuse de discuter des besoins spécifiques de votre projet et de trouver la meilleure solution pour vous.`;
-    }
-
-    // Réponses par défaut
-    const defaultResponses = language === 'en'
-      ? [
-          `I'd be happy to tell you more about ${zeynabData.name}'s skills and experience. What would you like to know?`,
-          `Feel free to ask about her technical skills, projects, education, or services. I'm here to help!`,
-          `Is there something specific about ${zeynabData.name}'s background or work that interests you?`
-        ]
-      : [
-          `Je serais ravi de vous en dire plus sur les compétences et l'expérience de ${zeynabData.name}. Que souhaitez-vous savoir ?`,
-          `N'hésitez pas à demander des informations sur ses compétences techniques, projets, formation ou services. Je suis là pour aider !`,
-          `Y a-t-il quelque chose de spécifique sur le parcours ou le travail de ${zeynabData.name} qui vous intéresse ?`
-        ];
-
-    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
+    // Default
+    const defaultResp = isEn 
+      ? `I can give you information about her skills, projects, and pricing.`
+      : `Je peux vous renseigner sur ses compétences, ses projets ou ses tarifs. Que choisissez-vous ?`;
+    addMessage(defaultResp, true, isEn ? ['Skills', 'Projects', 'Pricing'] : ['Compétences', 'Projets', 'Tarifs']);
   };
 
   return (
     <>
-      {/* Chatbot Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 bg-cyan-500 hover:bg-cyan-600 text-white p-4 rounded-full shadow-lg"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg border-2 border-white dark:border-gray-800"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <MessageCircle className="w-6 h-6" />
+        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </motion.button>
 
-      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-24 right-6 z-50 w-80 h-96 bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20 flex flex-col"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            className="fixed bottom-24 right-6 z-50 w-[350px] h-[500px] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/20">
-              <div className="flex items-center space-x-2">
-                <Bot className="w-6 h-6 text-cyan-300" />
-                <span className="text-white font-semibold">Zeynab's Assistant</span>
+            <div className="bg-blue-600 p-4 text-white flex items-center space-x-3">
+              <div className="p-2 bg-white/20 rounded-full">
+                <Bot className="w-5 h-5" />
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-white/70 hover:text-white"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div>
+                <h3 className="font-bold">Assistant Virtuel</h3>
+                <p className="text-xs text-blue-100">Répond instantanément</p>
+              </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {/* Chat Area */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-gray-900/50">
               {messages.map((message) => (
-                <motion.div
-                  key={message.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
-                >
+                <div key={message.id} className={`flex flex-col ${message.isBot ? 'items-start' : 'items-end'}`}>
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl ${
+                    className={`max-w-[85%] p-3 rounded-2xl shadow-sm text-sm ${
                       message.isBot
-                        ? 'bg-white/10 text-white'
-                        : 'bg-cyan-500 text-white'
+                        ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-100 dark:border-gray-700 rounded-tl-none'
+                        : 'bg-blue-600 text-white rounded-tr-none'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-line">{message.text}</p>
+                    <p className="whitespace-pre-line">{message.text}</p>
                   </div>
-                </motion.div>
+                  
+                  {/* Options Buttons */}
+                  {message.options && (
+                    <div className="flex flex-wrap gap-2 mt-3 w-full">
+                      {message.options.map(opt => (
+                        <button
+                          key={opt}
+                          onClick={() => handleSendMessage(opt)}
+                          className="text-xs px-3 py-1.5 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 rounded-full transition-colors"
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
 
               {isTyping && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex justify-start"
-                >
-                  <div className="bg-white/10 text-white p-3 rounded-2xl">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-cyan-300 rounded-full animate-bounce" />
-                      <div className="w-2 h-2 bg-cyan-300 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                      <div className="w-2 h-2 bg-cyan-300 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                    </div>
+                <div className="flex items-start">
+                  <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-3 rounded-2xl rounded-tl-none flex space-x-1 shadow-sm">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
                   </div>
-                </motion.div>
+                </div>
               )}
-
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
-            <div className="p-4 border-t border-white/20">
-              <div className="flex space-x-2">
+            {/* Input Area */}
+            <div className="p-3 bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
+              <div className="flex items-center space-x-2">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  placeholder={language === 'en' ? "Type your message..." : "Tapez votre message..."}
-                  className="flex-1 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-white placeholder-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-300"
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
+                  placeholder="Écrivez un message..."
+                  className="flex-1 bg-gray-100 dark:bg-gray-800 border-none rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
                 />
                 <button
-                  onClick={handleSendMessage}
+                  onClick={() => handleSendMessage(inputValue)}
                   disabled={!inputValue.trim()}
-                  className="bg-cyan-500 hover:bg-cyan-600 disabled:bg-gray-500 text-white p-2 rounded-full transition-colors"
+                  className="p-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-gray-700 text-white rounded-full transition-colors"
                 >
                   <Send className="w-4 h-4" />
                 </button>

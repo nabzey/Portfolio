@@ -43,7 +43,7 @@ const Index = () => {
           >
             <Link to="/projects">
               <motion.button
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                className="px-8 py-4 bg-blue-600 text-white font-semibold rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -53,7 +53,7 @@ const Index = () => {
 
             <Link to="/contact">
               <motion.button
-                className="px-8 py-4 border-2 border-cyan-300 text-cyan-100 font-semibold rounded-full hover:bg-cyan-300 hover:text-gray-900 transition-all duration-300"
+                className="px-8 py-4 border-2 border-blue-500 text-blue-500 font-semibold rounded-full hover:bg-blue-50 transition-colors duration-300 dark:hover:bg-gray-800"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
