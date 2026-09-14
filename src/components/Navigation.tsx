@@ -1,132 +1,128 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Menu, X, Download, Languages } from 'lucide-react';
+import { Menu, X, Languages, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+
+const navItems = [
+  { path: '/', label: 'Accueil' },
+  { path: '/about', label: 'À propos' },
+  { path: '/projects', label: 'Projets' },
+  { path: '/experience', label: 'Expérience' },
+  { path: '/skills', label: 'Compétences' },
+  { path: '/contact', label: 'Contact' },
+];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
-  const navItems = [
-    { path: '/', label: t('home') },
-    { path: '/about', label: t('about') },
-    { path: '/skills', label: t('skills') },
-    { path: '/projects', label: t('projects') },
-    { path: '/experience', label: t('experience') },
-    { path: '/education', label: t('education') },
-    { path: '/certifications', label: t('certifications') },
-    { path: '/contact', label: t('contact') },
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'fr' : 'en');
-  };
+  const toggleLanguage = () => setLanguage(language === 'en' ? 'fr' : 'en');
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/80 backdrop-blur-md shadow-[0_1px_0_0_rgba(16,22,47,0.06)]'
+          : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-2xl font-bold text-white">
-            BA Zeynab
+        <div className="flex items-center justify-between h-16 md:h-20">
+          <Link to="/" className="text-xl font-display font-extrabold text-ink tracking-tight">
+            Zeynab Ba<span className="text-violet">.</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'text-cyan-300'
-                    : 'text-white hover:text-cyan-200'
-                }`}
-              >
-                {item.label}
-                {location.pathname === item.path && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-300"
-                    layoutId="activeTab"
-                  />
-                )}
-              </Link>
-            ))}
-
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center space-x-2 px-3 py-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-            >
-              <Languages className="w-4 h-4" />
-              <span className="text-sm font-medium">{language.toUpperCase()}</span>
-            </button>
-
-            <a
-              href="/zeynabcv.CV.pdf"
-              download
-              className="flex items-center space-x-2 px-4 py-2 bg-cyan-500 text-white rounded-full hover:bg-cyan-600 transition-colors"
-            >
-              <Download className="w-4 h-4" />
-              <span>{t('downloadCV')}</span>
-            </a>
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const active = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors ${
+                    active ? 'text-violet' : 'text-ink/70 hover:text-ink'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={toggleLanguage}
+              aria-label="Changer de langue"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-ink/60 hover:text-ink rounded-full transition-colors"
+            >
+              <Languages className="w-4 h-4" />
+              {language.toUpperCase()}
+            </button>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-white text-sm font-semibold rounded-full hover:bg-violet transition-colors duration-300"
+            >
+              Discutons
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-ink p-2"
+            aria-label="Menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/10 backdrop-blur-md rounded-lg mt-2 overflow-hidden"
-          >
-            <div className="px-4 py-2 space-y-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    location.pathname === item.path
-                      ? 'bg-cyan-500/20 text-cyan-300'
-                      : 'text-white hover:bg-white/10 hover:text-cyan-200'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-
+          <div className="md:hidden bg-white/95 backdrop-blur-md rounded-2xl mb-4 overflow-hidden shadow-lg border border-ink/5">
+            <div className="px-4 py-3 space-y-1">
+              {navItems.map((item) => {
+                const active = location.pathname === item.path;
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`block px-3 py-2.5 text-sm font-medium rounded-xl transition-colors ${
+                      active ? 'bg-violet-light text-violet' : 'text-ink/70 hover:bg-secondary'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
               <button
                 onClick={() => {
                   toggleLanguage();
                   setIsOpen(false);
                 }}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-md transition-colors w-full text-left"
+                className="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-ink/70 hover:bg-secondary rounded-xl transition-colors w-full text-left"
               >
                 <Languages className="w-4 h-4" />
-                <span>{language === 'en' ? 'Français' : 'English'}</span>
+                {language === 'en' ? 'Français' : 'English'}
               </button>
-
-              <a
-                href="/zeynabcv.CV.pdf"
-                download
+              <Link
+                to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-md transition-colors"
+                className="flex items-center justify-center gap-2 mt-2 px-4 py-2.5 bg-ink text-white text-sm font-semibold rounded-full"
               >
-                <Download className="w-4 h-4" />
-                <span>{t('downloadCV')}</span>
-              </a>
+                Discutons
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </nav>

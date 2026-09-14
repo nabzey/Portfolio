@@ -13,7 +13,19 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Manrope", "Inter", "system-ui", "sans-serif"],
+      },
       colors: {
+        ink: "#10162F",
+        surface: "#F8F9FD",
+        violet: {
+          DEFAULT: "#7467F8",
+          light: "#EFEDFE",
+          dark: "#5C4FE0",
+        },
+        lavender: "#F1EEFE",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -62,6 +74,8 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        card: "22px",
+        panel: "28px",
       },
       keyframes: {
         "accordion-down": {

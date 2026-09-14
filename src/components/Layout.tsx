@@ -1,20 +1,17 @@
 import React from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import GlacialBackground from './GlacialBackground';
 import Chatbot from './Chatbot';
 
 interface LayoutProps {
   children: React.ReactNode;
-  showBackground?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, showBackground = true }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="relative min-h-screen">
-      {showBackground && <GlacialBackground />}
+    <div className="relative min-h-screen bg-surface">
       <Navigation />
-      <main className="relative z-10 pt-16">
+      <main className="relative z-10">
         {children}
       </main>
       <Footer />

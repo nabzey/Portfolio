@@ -112,7 +112,7 @@ const Chatbot: React.FC = () => {
   return (
     <>
       <motion.button
-        className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg border-2 border-white dark:border-gray-800"
+        className="fixed bottom-6 right-6 z-50 bg-violet hover:bg-violet-dark text-white p-4 rounded-full shadow-lg border-2 border-white dark:border-gray-800"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
@@ -129,13 +129,13 @@ const Chatbot: React.FC = () => {
             className="fixed bottom-24 right-6 z-50 w-[350px] h-[500px] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-blue-600 p-4 text-white flex items-center space-x-3">
+            <div className="bg-violet p-4 text-white flex items-center space-x-3">
               <div className="p-2 bg-white/20 rounded-full">
                 <Bot className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="font-bold">Assistant Virtuel</h3>
-                <p className="text-xs text-blue-100">Répond instantanément</p>
+                <p className="text-xs text-white/70">Répond instantanément</p>
               </div>
             </div>
 
@@ -147,7 +147,7 @@ const Chatbot: React.FC = () => {
                     className={`max-w-[85%] p-3 rounded-2xl shadow-sm text-sm ${
                       message.isBot
                         ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-100 dark:border-gray-700 rounded-tl-none'
-                        : 'bg-blue-600 text-white rounded-tr-none'
+                        : 'bg-violet text-white rounded-tr-none'
                     }`}
                   >
                     <p className="whitespace-pre-line">{message.text}</p>
@@ -160,7 +160,7 @@ const Chatbot: React.FC = () => {
                         <button
                           key={opt}
                           onClick={() => handleSendMessage(opt)}
-                          className="text-xs px-3 py-1.5 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 rounded-full transition-colors"
+                          className="text-xs px-3 py-1.5 bg-violet-light hover:bg-violet/20 text-violet border border-violet/20 rounded-full transition-colors"
                         >
                           {opt}
                         </button>
@@ -191,12 +191,12 @@ const Chatbot: React.FC = () => {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
                   placeholder="Écrivez un message..."
-                  className="flex-1 bg-gray-100 dark:bg-gray-800 border-none rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="flex-1 bg-gray-100 dark:bg-gray-800 border-none rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-violet outline-none"
                 />
                 <button
                   onClick={() => handleSendMessage(inputValue)}
                   disabled={!inputValue.trim()}
-                  className="p-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-gray-700 text-white rounded-full transition-colors"
+                  className="p-2 bg-violet hover:bg-violet-dark disabled:bg-gray-300 dark:disabled:bg-gray-700 text-white rounded-full transition-colors"
                 >
                   <Send className="w-4 h-4" />
                 </button>

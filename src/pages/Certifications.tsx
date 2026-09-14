@@ -37,22 +37,23 @@ const Certifications = () => {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16 max-w-5xl">
+      <div className="container mx-auto px-4 pt-32 pb-24 max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">
-            Certifications
+          <p className="text-xs font-semibold tracking-[0.2em] text-violet mb-4">CERTIFICATIONS</p>
+          <h1 className="font-display text-3xl md:text-5xl font-extrabold text-ink mb-4">
+            Mes certifications
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400">
+          <p className="text-ink/60">
             Mes certifications professionnelles et accomplissements
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {certifications.map((cert, index) => (
             <motion.div
               key={cert.title}
@@ -60,25 +61,25 @@ const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-all group"
+              className="bg-white rounded-card p-8 shadow-sm border border-ink/5 hover:shadow-md transition-all group"
             >
               <div className="flex items-start space-x-5">
-                <div className="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="p-3 bg-violet-light rounded-xl shrink-0 group-hover:scale-110 transition-transform">
                   {cert.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
+                  <h3 className="font-display text-lg font-bold text-ink mb-2 leading-tight">
                     {cert.title}
                   </h3>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold mb-3">
+                  <p className="text-violet font-semibold mb-3">
                     {cert.issuer}
                   </p>
                   <div className="mb-4">
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300 px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full">
+                    <span className="text-sm font-medium text-ink/60 px-3 py-1 bg-secondary rounded-full">
                       {cert.date}
                     </span>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                  <p className="text-ink/60 text-sm leading-relaxed">
                     {cert.description}
                   </p>
                 </div>
