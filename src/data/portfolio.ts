@@ -8,6 +8,11 @@ import gest3 from "@/assets/ges-apprenant/gest3.png";
 import gest4 from "@/assets/ges-apprenant/gest4.png";
 import gest5 from "@/assets/ges-apprenant/gest5.png";
 import maxitImage from "@/assets/maxit/maxit.png";
+import hergoCover from "@/assets/hergo/cover.png";
+import westamarketCover from "@/assets/westamarket/cover.svg";
+import luxuryCover from "@/assets/luxury/cover.png";
+import projetWalletCover from "@/assets/projet-wallet/cover.svg";
+import secourissCover from "@/assets/secouriss/cover.png";
 
 export const profile = {
   name: "Zeynab Ba",
@@ -20,7 +25,7 @@ export const profile = {
   whatsapp: "https://wa.me/221773657435",
   github: "https://github.com/nabzey",
   linkedin: "https://linkedin.com/in/zeynab-ba-4342a021a",
-  cvPath: "/zeynabcv.CV.pdf",
+  cvPath: "/cvzeyajours_final.pdf",
   bioShort:
     "Développeuse Fullstack polyvalente, à l'aise sur l'ensemble de la chaîne front, mobile et back. Je conçois des expériences et je construis des solutions, de la spécification à la mise en production.",
   bioLong:
@@ -67,7 +72,8 @@ export const projects: Project[] = [
     description:
       "Plateforme permettant de trouver rapidement un hôtel ou une villa dans une ville inconnue. Pipeline de déploiement complet sur AWS avec Terraform et Ansible, conteneurisation Docker, reverse-proxy Nginx et intégration continue via GitHub Actions. Projet présenté et démontré devant les pairs.",
     tech: ["Node.js", "React", "AWS EC2", "Terraform", "Ansible", "Docker", "Nginx", "GitHub Actions"],
-    github: "https://github.com/nabzey/HERGO",
+    images: [hergoCover],
+    // github: "https://github.com/nabzey/HERGO",
     featured: true,
   },
   {
@@ -76,6 +82,7 @@ export const projects: Project[] = [
     description:
       "Application mobile marketplace (Android + iOS) pour vendre et acheter des produits modernes d'Afrique de l'Ouest simplement, rapidement et en sécurité : catalogue produits, recherche, panier, commandes.",
     tech: ["React Native", "Laravel", "PostgreSQL", "Docker"],
+    images: [westamarketCover],
     github: "https://github.com/nabzey/WestaMarket",
     featured: true,
   },
@@ -119,6 +126,7 @@ export const projects: Project[] = [
     description:
       "Plateforme web avec une interface haut de gamme dédiée à la présentation de biens/services premium. Design UI/UX et optimisation des performances.",
     tech: ["TypeScript", "React", "Tailwind CSS"],
+    images: [luxuryCover],
     github: "https://github.com/nabzey/LUXURY",
     link: "https://luxurym2.vercel.app/",
   },
@@ -154,10 +162,20 @@ export const projects: Project[] = [
     github: "https://github.com/nabzey/FASTAPI",
   },
   {
+    slug: "projet-wallet",
+    title: "Projet Wallet",
+    description: "Architecture microservices (wallet-service et service-app) avec Spring Boot pour la gestion des comptes, transactions et OTP/JWT, asynchronisme via Kafka, et application front-end mobile/web Flutter.",
+    tech: ["Java", "Spring Boot", "Flutter", "Kafka", "PostgreSQL"],
+    images: [projetWalletCover],
+    github: "https://github.com/nabzey/Projet_Wallet",
+    featured: true,
+  },
+  {
     slug: "secouriss",
     title: "Secouriss",
     description: "Application outil d'aide aux premiers secours.",
     tech: ["TypeScript", "React", "Vite"],
+    images: [secourissCover],
     github: "https://github.com/nabzey/secouriss",
     link: "https://secouriss.vercel.app",
   },

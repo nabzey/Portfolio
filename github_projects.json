@@ -158,5 +158,13 @@
     "homepage": null,
     "topics": [],
     "language": "JavaScript"
+  },
+  {
+    "name": "Projet_Wallet",
+    "description": "Deux microservices Spring Boot indépendants + une application Flutter (wallet-service, service-app, wallet_mobile) avec authentification OTP/PIN/JWT, paiements, Kafka et Postgres.",
+    "url": "https://github.com/nabzey/Projet_Wallet",
+    "homepage": null,
+    "topics": [],
+    "language": "Java"
   }
 ]
